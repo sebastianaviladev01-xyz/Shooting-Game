@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAR IN SPACE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="GameMenu.css">
+</head>
+<body>
+
+    <video class="bg-video" autoplay loop muted playsinline src="video/menu.mp4"></video>
+    <div class="overlay"></div>
+
+    <main class="menu">
+
+        <div class="title-wrap">
+            <h1 class="game-title" data-text="WAR IN SPACE">WAR IN SPACE</h1>
+            <p class="tagline">La galaxia necesita un héroe</p>
+        </div>
+
+        <a href="shots.html" class="btn-play" id="btnPlay">JUGAR</a>
+
+        <div class="controls">
+            <div class="control-item">
+                <div class="keys"><kbd>←</kbd><kbd>→</kbd></div>
+                <span>Moverse</span>
+            </div>
+            <div class="control-sep"></div>
+            <div class="control-item">
+                <div class="keys"><kbd>A</kbd><kbd>D</kbd></div>
+                <span>Alternativo</span>
+            </div>
+            <div class="control-sep"></div>
+            <div class="control-item">
+                <div class="keys"><kbd>ESPACIO</kbd></div>
+                <span>Disparar</span>
+            </div>
+            <div class="control-sep"></div>
+            <div class="control-item">
+                <div class="keys"><kbd>CLICK</kbd></div>
+                <span>Pausar</span>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.getElementById('btnPlay').addEventListener('click', function (e) {
+            e.preventDefault()
+            document.body.classList.add('fade-out')
+            setTimeout(function () { window.location.href = 'shots.html' }, 600)
+        })
+    </script>
+
+</body>
+</html>

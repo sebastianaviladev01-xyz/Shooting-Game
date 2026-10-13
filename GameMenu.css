@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Lato', sans-serif;
+}
+
+/* ── Video background ── */
+.bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* ── Dark gradient overlay ── */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.6) 50%,
+        rgba(0, 0, 0, 0.75) 100%
+    );
+    z-index: 1;
+}
+
+/* ── Fade-out on navigate ── */
+body.fade-out {
+    animation: fadeOut 0.6s ease forwards;
+}
+@keyframes fadeOut {
+    to { opacity: 0; }
+}
+
+/* ── Main layout ── */
+.menu {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+}
+
+/* ── Title ── */
+.title-wrap {
+    text-align: center;
+}
+
+.game-title {
+    font-size: clamp(2.8rem, 7vw, 6.5rem);
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow:
+        0 0 20px rgba(0, 225, 255, 0.9),
+        0 0 60px rgba(0, 225, 255, 0.4),
+        0 0 120px rgba(0, 225, 255, 0.15);
+    animation: title-float 5s ease-in-out infinite;
+    user-select: none;
+}
+
+/* Glitch layers */
+.game-title::before,
+.game-title::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+.game-title::before {
+    color: #0ff;
+    clip-path: polygon(0 0, 100% 0, 100% 36%, 0 36%);
+    animation: glitch-top 4s infinite;
+}
+.game-title::after {
+    color: #f0a;
+    clip-path: polygon(0 64%, 100% 64%, 100% 100%, 0 100%);
+    animation: glitch-bot 4s infinite;
+}
+
+.tagline {
+    margin-top: 12px;
+    font-size: clamp(0.7rem, 1.5vw, 0.95rem);
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+
+/* ── High score ── */
+.high-score-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.hs-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: rgba(255, 215, 0, 0.55);
+    text-transform: uppercase;
+}
+.hs-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FFD700;
+    text-shadow: 0 0 16px rgba(255, 215, 0, 0.5);
+}
+
+/* ── Play button ── */
+.btn-play {
+    display: inline-block;
+    padding: 17px 68px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #00E1FF;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, letter-spacing 0.3s ease, transform 0.15s ease;
+    animation: pulse-border 2.5s ease-in-out infinite;
+}
+.btn-play::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #00E1FF;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+    z-index: -1;
+}
+.btn-play:hover {
+    color: #000;
+    letter-spacing: 0.6em;
+    transform: scale(1.04);
+}
+.btn-play:hover::before {
+    transform: scaleX(1);
+}
+.btn-play:active {
+    transform: scale(0.98);
+}
+
+/* ── Controls legend ── */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.control-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+.control-item span {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+}
+.keys {
+    display: flex;
+    gap: 4px;
+}
+kbd {
+    display: inline-block;
+    padding: 5px 9px;
+    min-width: 32px;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #00E1FF;
+    border: 1px solid rgba(0, 225, 255, 0.35);
+    border-radius: 5px;
+    background: rgba(0, 225, 255, 0.06);
+    box-shadow: 0 2px 0 rgba(0, 225, 255, 0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.control-sep {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Keyframe animations ── */
+@keyframes title-float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
+}
+
+@keyframes glitch-top {
+    0%, 87%, 100% { transform: translate(0); opacity: 0; }
+    88%  { opacity: 1; transform: translate(-5px, -2px); }
+    90%  { transform: translate(5px,  2px); }
+    92%  { transform: translate(-2px, 0); opacity: 0; }
+}
+
+@keyframes glitch-bot {
+    0%, 82%, 100% { transform: translate(0); opacity: 0; }
+    83%  { opacity: 1; transform: translate(5px,  2px); }
+    85%  { transform: translate(-5px, -2px); }
+    87%  { transform: translate(2px,  0); opacity: 0; }
+}
+
+@keyframes pulse-border {
+    0%, 100% {
+        box-shadow: 0 0 8px #00E1FF, 0 0 18px rgba(0, 225, 255, 0.25);
+    }
+    50% {
+        box-shadow: 0 0 20px #00E1FF, 0 0 50px rgba(0, 225, 255, 0.45), 0 0 90px rgba(0, 225, 255, 0.12);
+    }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .menu          { gap: 28px; }
+    .game-title    { letter-spacing: 0.1em; }
+    .btn-play      { padding: 14px 44px; font-size: 1rem; letter-spacing: 0.4em; }
+    .control-sep   { display: none; }
+    .controls      { gap: 14px; }
+}
